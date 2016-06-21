@@ -12,12 +12,13 @@
     });
 
     var socketClient = require('aud-socket-client').client('test-service', [{host:'127.0.0.1',port:8124}]);// namespace config(list of servers)
+    var timeout = 500; //ms
     socketClient.connect(function(err) {
         if(err)
             throw err;
 
         socketClient.send('methodName', 'test from client', function(err, result){
             console.log(result); //'test from server'
-        });
+        }, timeout);
     });
 
